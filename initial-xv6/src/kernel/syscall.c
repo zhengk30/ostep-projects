@@ -7,7 +7,6 @@
 #include "syscall.h"
 #include "defs.h"
 
-uint64 readcount = 0;
 // Fetch the uint64 at addr from the current process.
 int
 fetchaddr(uint64 addr, uint64 *ip)
@@ -143,10 +142,7 @@ syscall(void)
     // and store its return value in p->trapframe->a0
     p->trapframe->a0 = syscalls[num]();
     if (num == SYS_read) {
-        readcount++;
-    }
-    if (num == SYS_getreadcount) {
-        p->readcount = readcount;
+      p->readcount++;
     }
   } else {
     printf("%d %s: unknown sys call %d\n",

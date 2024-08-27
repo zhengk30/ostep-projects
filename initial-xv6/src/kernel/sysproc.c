@@ -6,8 +6,6 @@
 #include "spinlock.h"
 #include "proc.h"
 
-extern uint64 readcount;
-
 uint64
 sys_exit(void)
 {
@@ -96,5 +94,5 @@ sys_uptime(void)
 
 uint64
 sys_getreadcount(void) {
-    return myproc()->readcount;
+  return myproc()->readcount;
 }
